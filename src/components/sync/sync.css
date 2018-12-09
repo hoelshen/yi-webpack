@@ -1,0 +1,14 @@
+.test{
+    --fontColor: yellowgreen;
+    color: var(--fontColor);
+}
+
+/* .sync{
+    .test{
+        --fontColor: yellowgreen;
+        color: var(--fontColor);
+    }
+} */
+/* .hero:matches(main, main)
+
+//}*/
