@@ -6,8 +6,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// const  setIterm2Badge = require('set-iterm2-badge');
-// setIterm2Badge("sjh")
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+ 
+const smp = new SpeedMeasurePlugin();
+const  setIterm2Badge = require('set-iterm2-badge');
+setIterm2Badge("sjh")
 const argv = require('yargs-parser')(process.argv.slice(2));
 const merge = require("webpack-merge");
 const _mode = argv.mode || "development";
@@ -89,4 +92,4 @@ webpackConfig = {
         // })
     ]
 }
-module.exports = merge(_mergeConfig, webpackConfig)
+module.exports = smp.wrap(merge(_mergeConfig, webpackConfig))

@@ -1,6 +1,6 @@
-.test {
-  --fontColor: red;
-  color: var(--fontColor);
+.test{
+    --fontColor: red;
+    color: var(--fontColor);
 }
 
 /* .sync{
@@ -9,7 +9,6 @@
         color: var(--fontColor);
     }
 } */
-
 /* .hero:matches(main, main)
 
 //}*/
