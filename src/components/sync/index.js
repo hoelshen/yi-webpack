@@ -9,7 +9,9 @@ const sync = function(){
     .then(data=>{
         console.log("fetch的结果", data.message);
     })
-    // document.getElementById("app").innerHTML = `<h1 class="${item.test}">H1</h1>`
+    setTimeout(function(){
+        document.getElementById("app").innerHTML = `<h1 class="${item.test}">sjh</h1>`
+    },2000)
 }
 
 const isArrayFun  = function(args){

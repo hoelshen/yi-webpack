@@ -7,7 +7,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
- 
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const smp = new SpeedMeasurePlugin();
 const  setIterm2Badge = require('set-iterm2-badge');
 setIterm2Badge("sjh")
@@ -16,6 +18,10 @@ const merge = require("webpack-merge");
 const _mode = argv.mode || "development";
 const _modeflag = (_mode == "production" ? true : false);
 const _mergeConfig = require(`./config/webpack.${_mode}.js`);
+const ManifestPlugin = require('webpack-manifest-plugin');
+const loading = {
+    html: "加载中..."
+}
 // console.log("寻找文件", glob.sync(join(__dirname, './dist/*.html')))
 webpackConfig = {
     module: {
@@ -75,10 +81,14 @@ webpackConfig = {
         //       publicPath: '../'
         //     }
         // },
+        new ManifestPlugin(),
+        new DashboardPlugin(),
+        new ProgressBarPlugin(),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: "index.html",
-            template: "src/index.html" //不止可以指定html，还可以指定js
+            template: "src/index.html", //不止可以指定html，还可以指定js,
+            loading
         }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
@@ -90,6 +100,11 @@ webpackConfig = {
         //     // Give paths to parse for rules. These should be absolute!
         //     paths: glob.sync(path.join(__dirname, './src/*.html')),
         // })
+        new WebpackBuildNotifierPlugin({
+            title: "My Project Webpack Build",
+            logo: path.resolve("./img/favicon.png"),
+            suppressSuccess: true
+        })
     ]
 }
 module.exports = smp.wrap(merge(_mergeConfig, webpackConfig))

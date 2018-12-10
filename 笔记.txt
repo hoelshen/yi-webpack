@@ -1,3 +1,26 @@
+====开发阶段===
 //多核压缩
 //监控面板
+//开启通知面板
+
+===上线阶段====
+1.es6不需要编译 , 
+set map es9
+https://cdn.polyfill.io/v2/polyfill.min.js?features%20=Map,set
+2.前端缓存小负载   webapp
+    a.js => a.xx.js
+    a.xx.js -> 代码 后台  每次计算出当前包
+3.真的loading
+    算js
+
+4.单页  多页转单页
+    移动  性能  请求的数量  runtime  html里面
+
+5.分析打包结果 CI,集成
+6.test exclude include 非常重要
+
+7。压缩js css happypack ts-loader optimize-css-assets-webpack-plugin
+8. devtool eval
+9.cache-loader
+
 
